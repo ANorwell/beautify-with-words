@@ -41,12 +41,12 @@ var wordlist = [
 ];
 
 var randomWord = function(count) {
-  word = '';
+  var word = '';
   for (var i = 0; i < count; i++) {
     word+= wordlist[Math.floor(Math.random()*wordlist.length)];
   }
-  word.charAt(0).toLowerCase() + word.slice(1);
-}
+  return word.charAt(0).toLowerCase() + word.slice(1);
+};
 
 
 // Format options to pass to the beautifier
@@ -74,7 +74,7 @@ var getUniqueWord = (function() {
   var used = {};
   var keyCount = 0;
   return function generate() {
-    wordCount = 1
+    var wordCount = 1;
     var word = randomWord(wordCount);
     while (used[word]) {
       wordCount++;
