@@ -3,7 +3,6 @@
 'use strict';
 
 var fs = require('fs');
-var phonetic = require('phonetic');
 var UglifyJS = require('uglify-js');
 
 var argv = require('optimist')
@@ -28,6 +27,26 @@ var argv = require('optimist')
 var beautifyOptions = {
   beautify: true
 };
+
+var wordlist = [
+  'Abstract',
+  'Factory',
+  'Module',
+  'Flyweight',
+  'Interface',
+  'Strategy',
+  'Pattern',
+  'Facade',
+  'Decorator'
+];
+
+var randomWord = function(count) {
+  word = '';
+  for (var i = 0; i < count; i++) {
+    word+= wordlist[Math.floor(Math.random()*wordlist.length)];
+  }
+  word.charAt(0).toLowerCase() + word.slice(1);
+}
 
 
 // Format options to pass to the beautifier
@@ -55,19 +74,14 @@ var getUniqueWord = (function() {
   var used = {};
   var keyCount = 0;
   return function generate() {
-    var word = phonetic.generate(options);
-    if (!used[word]) {
-      used[word] = true;
-      return word;
+    wordCount = 1
+    var word = randomWord(wordCount);
+    while (used[word]) {
+      wordCount++;
+      word = randomWord(wordCount);
     }
-    var currKeyCount = Object.keys(used).length;
-    if (currKeyCount === keyCount) {
-      keyCount = 0;
-      options.syllables++;
-    } else {
-      keyCount = currKeyCount;
-    }
-    return generate();
+    used[word] = true;
+    return word;
   };
 })();
 
