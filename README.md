@@ -1,44 +1,44 @@
-beautify-with-words
+javaify-with-words
 ===================
 
-`beautify-with-words` beautifies javascript and replaces variable names with unique "long-ish words". It uses [UglifyJS2](https://github.com/mishoo/UglifyJS2)'s beautifier, but uses a phonetic word generator to rename variables. This makes it <del>easier</del> less-hard to read unminified code and do things like search-and-replace.
+`javaify-with-words` beautifies javascript and replaces variable names with unique "long-ish words". It uses [UglifyJS2](https://github.com/mishoo/UglifyJS2)'s beautifier, but uses a phonetic word generator to rename variables. This makes it <del>easier</del> less-hard to read unminified code and do things like search-and-replace.
 
 
 ### Installation ###
 With [`npm`](http://npmjs.org/) as a global package:
 
 ```bash
-{sudo} npm install -g beautify-with-words
+{sudo} npm install -g ./
 ```
 
 ### Usage ###
 
 ```
-beautify-with-words [input_file.js] [options]
+javaify-with-words [input_file.js] [options]
 ```
 
-`beautify-with-words` takes one file at a time – or, if no input file is specified, then input is read from `STDIN`.
+`javaify-with-words` takes one file at a time – or, if no input file is specified, then input is read from `STDIN`.
 
 * Use the `-o` / `--output` option to specify an output file. By default, the output goes to `STDOUT`;
-* Use the `-b` / `--beautify` to pass UglifyJS2 [beautifier options](https://github.com/mishoo/UglifyJS2#beautifier-options);
+* Use the `-b` / `--javaify` to pass UglifyJS2 [beautifier options](https://github.com/mishoo/UglifyJS2#beautifier-options);
 * And `-h` / `--help` for help.
 
 Reading from, and saving to, a file:
 
 ```
-beautify-with-words backbone-min.js -o backbone-youre-beautiful-regardless.js
+javaify-with-words backbone-min.js -o backbone-youre-beautiful-regardless.js
 ```
 
 Send the output to `STDOUT`, and turn off syntax _beatification_ but keep variable renaming:
 
 ```
-beautify-with-words backbone-min.js -b beautify=false
+javaify-with-words backbone-min.js -b javaify=false
 ```
 
 Tell the beautifier to always insert brackets in `if`, `for`, `do`, `while` or `with` statements. Go [here](https://github.com/mishoo/UglifyJS2#beautifier-options) for more options.
 
 ```
-beautify-with-words backbone-min.js -b bracketize=true
+javaify-with-words backbone-min.js -b bracketize=true
 ```
 
 
@@ -47,7 +47,7 @@ beautify-with-words backbone-min.js -b bracketize=true
 This:
 
 ```bash
-curl http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js | beautify-with-words
+curl http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.0/backbone-min.js | javaify-with-words
 ```
 
 Turns this:
